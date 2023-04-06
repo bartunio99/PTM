@@ -1,4 +1,4 @@
-# PTMlaby
-labki z ptm
+# PTM
 
-są to programy pisane w języku asemblera na procesor Infineon 80C537 z rodziny procesorów 8051
+This repository contains assembly code programs writeen for infineon 80C537 microcontroller,
+which belongs to 8051 family. 
