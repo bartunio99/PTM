@@ -1,4 +1,4 @@
-ljmp start              ;program binds buttons (bite inputs P3.2-P3.5) with prompts (strings 1-4), when certain button is pressed, text appears on screen,
+ljmp start              ;program binds buttons (bit inputs P3.2-P3.5) with prompts (strings 1-4), when certain button is pressed, text appears on screen,
                         ;when 2 utter buttons are pressed, it terminates itself
 
 org 100h
