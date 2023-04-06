@@ -1,12 +1,12 @@
 ljmp start
 
 org 50h
-	dodaj:								;dodaje zawartosc akumulatora do w dane miejsce pamieci XRAM
+	dodaj:								;adds content of accumulator into a slot in XRAM memory
 		movx @dptr, a
 		inc dptr
 		ret
-org 100h								;program wybiera najwiekszy element tablicy
-	start:	mov dptr, #8000h			;inicjalizacja tablicy
+org 100h								;program searches for biggest element in 16-element array
+	start:	mov dptr, #8000h			;array initialization and fill
 	mov a, #12h
 	acall dodaj
 
@@ -55,21 +55,21 @@ org 100h								;program wybiera najwiekszy element tablicy
 	mov a, #34h
 	acall dodaj
 		
-	mov dptr, #7fffh				;przywraca dptr na 1 przed poczatkiem tablicy
+	mov dptr, #7fffh				;sets dptr to one less than array address
 	mov b, #00h;
-	petla:							;najwiekszy element bedzie przechowywany w rejestrze b
+	petla:							;biggest element will be held in b register
 		inc dptr
-		clr c						;czysci flage C
+		clr c						;clears C flag
 		movx a, @dptr
 		jz koniec
-		cjne a, b, warunek1			;jesli a<b ustawia flage CY na 1, w przeciwnym wypadku na 0 i skacze do warunku 1
-		jmp petla					;wentyl bezpieczenstwa, jakby byly rowne
+		cjne a, b, warunek1			;if a<b set CY flag to 1, else it sets if to 0 and jumps to the first condition
+		jmp petla					;in case numbers were equal
 		
-	warunek1:						;jesli a<b to jest spelniony i b zostaje bez zmian
+	warunek1:						;if a<b then it's true and b stays the same
 		jnc warunek2
 		jmp petla
 		
-	warunek2:						;jesli b<a to ustawia a na b
+	warunek2:						;if b<a, moves value from a to b
 		mov b, a
 		jmp petla		
 		
